@@ -33,13 +33,15 @@ public class Application {
         String requiredFlags[][] = {
             {"-use", "--notUse", "--find"},
             {"-name", "--noName"},
-            {"-encoder", "--noEncoder"}};
+            {"-encoder", "--noEncoder"}
+        };
 
         String optionalFlags[][] = {
             {"-flag", "--noFlag"},
-            {"-test", "--noTest"}};
+            {"-test", "--noTest"}
+        };
 
-        String argsAux[] = {
+        String defaultArgs[] = {
             "--useDefault",
             "-uses",
             "MKV",
@@ -52,12 +54,19 @@ public class Application {
             "-test",
             "_urls.xml",
             "--aac",
-            "--noEncoder"};
+            "--noEncoder"
+        };
 
         // for (String arg : args)
         //     System.out.println(arg);
-        //Flag[] flags = FlagProcessor.validateFlags(argsAux, requiredFlags, optionalFlags, true);
-        Flag[] flags = FlagProcessor.validateFlags(args, requiredFlags, optionalFlags, true);
+        Flag[] flags;
+        if (args.length != 0) {
+            System.out.println("Validating specified flags...");
+            flags = FlagProcessor.validateFlags(args, requiredFlags, optionalFlags, true);
+        } else {
+            System.out.println("No flags specified, validating default flags...");
+            flags = FlagProcessor.validateFlags(defaultArgs, requiredFlags, optionalFlags, true);
+        }
         if (flags == null) {
             System.out.println("...ERROR IN FLAGS...");
             return;
