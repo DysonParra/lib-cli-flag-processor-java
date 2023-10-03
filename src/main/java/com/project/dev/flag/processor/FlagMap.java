@@ -26,10 +26,10 @@ import java.util.Map;
 public class FlagMap {
 
     /**
-     * TODO: Definición de {@code convertFlagsArrayToMap}.
+     * Convierte un array de {@code Flag} en un {@code Map<String, String>} con las flags.
      *
-     * @param flags
-     * @return
+     * @param flags es el array que se va a convertir en Map.
+     * @return {@code Map<String, String>} con las flags.
      */
     public static Map<String, String> convertFlagsArrayToMap(Flag[] flags) {
         Map<String, String> flagsMap = new HashMap<>();
@@ -39,14 +39,22 @@ public class FlagMap {
     }
 
     /**
-     * TODO: Definición de {@code validateFlagInMap}.
+     * Verifica si un {@code String} que indica una {@code Flag} está en el {@code Map} indicado por
+     * {@code flagsMap}, en caso de estar en el {@code Map} verifica si es del tipo indicado por
+     * {@code classType}.
      *
-     * @param <T>
-     * @param flagsMap
-     * @param flagName
-     * @param defaultValue
-     * @param classType
-     * @return
+     * @param <T>          tipo de dato que se validará que tenga el {@code Flag} indicado por
+     *                     {@code flagName}.
+     * @param flagsMap     un map que contiene varios {@code Flag} como {@code String}.
+     * @param flagName     el nombre del {@code Flag} que se buscará en {@code flagsMap}.
+     * @param defaultValue es el valor por defecto que se retornará en caso de que el
+     *                     {@code flagName} no se ecnuentre o sea de un tipo diferente al indicado
+     *                     por {@code classType}.
+     * @param classType    tipo de clase que se validará que tenga el {@code Flag} indicado por
+     *                     {@code flagName}.
+     * @return el {@code Flag} indicado por {@code flagName} convertido en el tipo indicado por
+     *         {@code classType} si la flag se encuentra en {@code flagsMap} y no ocurre error al
+     *         hacer la conversión a dicho tipo, caso contrario {@code defaultValue}.
      */
     public static <T> T validateFlagInMap(Map<String, String> flagsMap,
             String flagName, T defaultValue, Class<T> classType) {
