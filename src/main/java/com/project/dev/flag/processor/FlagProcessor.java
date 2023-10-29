@@ -15,7 +15,7 @@
 package com.project.dev.flag.processor;
 
 /**
- * TODO: Definición de {@code FlagProcessor}.
+ * TODO: Description of {@code FlagProcessor}.
  *
  * @author Dyson Parra
  * @since 11

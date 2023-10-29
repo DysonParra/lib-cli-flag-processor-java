@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * TODO: Definición de {@code FlagMap}.
+ * TODO: Description of {@code FlagMap}.
  *
  * @author Dyson Parra
  * @since 11

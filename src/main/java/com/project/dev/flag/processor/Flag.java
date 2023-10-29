@@ -20,7 +20,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * TODO: Definición de {@code Flag}.
+ * TODO: Description of {@code Flag}.
  *
  * @author Dyson Parra
  * @since 11

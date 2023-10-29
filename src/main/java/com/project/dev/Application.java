@@ -18,7 +18,7 @@ import com.project.dev.flag.processor.Flag;
 import com.project.dev.flag.processor.FlagProcessor;
 
 /**
- * TODO: Definición de {@code Application}.
+ * TODO: Description of {@code Application}.
  *
  * @author Dyson Parra
  * @since 11
