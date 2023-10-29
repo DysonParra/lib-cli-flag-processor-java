@@ -21,7 +21,7 @@ import java.util.Map;
  * TODO: Definición de {@code FlagMap}.
  *
  * @author Dyson Parra
- * @since 1.8
+ * @since 11
  */
 public class FlagMap {
 
