@@ -29,11 +29,12 @@ public class FlagProcessor {
      * @param printNull indica si se van a imprimir las flags con valor de {@code null}
      */
     public static void printFlagsArray(Flag[] flags, boolean printNull) {
-        System.out.println("\nSTART Flags:");
-        for (Flag flag : flags)
-            if (printNull || flag != null)
-                System.out.println(flag);
-        System.out.println("END Flags\n");
+        System.out.println("\nFlags START");
+        if (flags != null)
+            for (Flag flag : flags)
+                if (printNull || flag != null)
+                    System.out.println(flag);
+        System.out.println("Flags END\n");
     }
 
     /**
@@ -45,10 +46,10 @@ public class FlagProcessor {
     public static void printFlagsMatrix(String[][] flags, String message) {
         System.out.println(message);
         String line;
-        for (String[] valueOr : flags) {
-            line = valueOr[0];
-            for (int i = 1; i < valueOr.length; i++)
-                line += " or " + valueOr[i];
+        for (String[] flag : flags) {
+            line = flag[0];
+            for (int i = 1; i < flag.length; i++)
+                line += " or " + flag[i];
             System.out.println(line);
         }
         if (flags.length == 0)
@@ -370,7 +371,7 @@ public class FlagProcessor {
         }
 
         inputFlags = new Flag[argsQuantity];
-        result = FlagProcessor.convertArgsToFlagsArray(args, inputFlags);
+        result = convertArgsToFlagsArray(args, inputFlags);
         if (result != null) {
             System.out.println(result);
             return null;
@@ -403,17 +404,17 @@ public class FlagProcessor {
      *                          vacío.
      * @param requiredFlags     una matriz con las flags requeridas; en cada fila se indican las
      *                          flags y en cada columna indica cuales flags son excluyentes (si se
-     *                          incluye la valueOr de una columna no se pueden incluir las flags en
-     *                          las otras columnas de esa fila) al ser requeridas se debe incluir
-     *                          una y solo una valueOr de cada fila.
+     *                          incluye la flag de una columna no se pueden incluir las flags en las
+     *                          otras columnas de esa fila) al ser requeridas se debe incluir una y
+     *                          solo una flag de cada fila.
      * @param optionalFlags     una matriz con las flags opcionales; en cada fila se indican las
      *                          flags y en cada columna indica cuales flags son excluyentes (si se
-     *                          incluye la valueOr de una columna no se pueden incluir las flags en
-     *                          las otras columnas de esa fila) al ser opcionales se pueden o no
-     *                          incluir una y solo una valueOr de cada fila.
+     *                          incluye la flag de una columna no se pueden incluir las flags en las
+     *                          otras columnas de esa fila) al ser opcionales se pueden o no incluir
+     *                          una y solo una flag de cada fila.
      * @param allowUnknownFlags si {@code true} se aceptan flags que no estén en el array
      *                          {@code requiredFlags} ni en el array {@code optionalFlags}, caso
-     *                          contrario si se encuentra una valueOr que no esté en los arrays se
+     *                          contrario si se encuentra una flag que no esté en los arrays se
      *                          devuelve {@code null} y se mostrará mensaje de error.
      * @return array de {@code Flag} si se puede procesar {@code args} utilizando
      *         {@code requiredFlags} y {@code optionalFlags} sin ningún inconveniente, caso
@@ -430,17 +431,19 @@ public class FlagProcessor {
             flags = null;
         } else if (args != null && args.length != 0) {
             System.out.println("Validating specified flags...");
-            flags = FlagProcessor.validateFlags(args, requiredFlags, optionalFlags, allowUnknownFlags);
+            flags = validateFlags(args, requiredFlags, optionalFlags, allowUnknownFlags);
         } else {
             System.out.println("No flags specified, validating default flags...");
-            flags = FlagProcessor.validateFlags(defaultArgs, requiredFlags, optionalFlags, allowUnknownFlags);
+            flags = validateFlags(defaultArgs, requiredFlags, optionalFlags, allowUnknownFlags);
         }
 
         if (flags == null) {
             System.out.println("");
             printFlagsMatrix(requiredFlags, "Required flags:");
             printFlagsMatrix(optionalFlags, "Optional flags:");
-        }
+            System.out.println("Error in flags");
+        } else
+            printFlagsArray(flags, true);
 
         return flags;
     }
