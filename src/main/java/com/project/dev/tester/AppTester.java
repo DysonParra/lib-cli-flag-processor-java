@@ -62,7 +62,7 @@ public class AppTester {
         Flag[] flags = FlagProcessor.convertArgsToFlags(args, defaultArgs, requiredFlags, optionalFlags, true);
         if (flags != null)
             System.out.println("Flags success processed");
-        
+
         return flags != null;
     }
 
