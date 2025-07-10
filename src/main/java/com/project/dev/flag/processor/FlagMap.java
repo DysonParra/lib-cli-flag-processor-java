@@ -1,5 +1,5 @@
 /*
- * @fileoverview    {FlagMap}
+ * @overview        {FlagMap}
  *
  * @version         2.0
  *
